@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:fragment="header">
+        <!-- ログイン後にのみ表示されるヘッダー -->
+        <header sec:authorize="isAuthenticated()" class="ec-header">
+            <div class="header-content">
+                <!-- ロゴ -->
+                <div class="header-left">
+                    <a th:href="@{/top}" class="logo">Cytech EC.</a>
+                </div>
+                
+                <!-- 商品検索フォーム -->
+                <div class="header-center">
+                    <form th:action="@{/product/search}" method="get" class="search-form">
+                        <input type="text" name="keyword" placeholder="商品名" class="search-input">
+                        <select name="categoryId" class="category-select">
+                            <option value="">ファッション</option>
+                        </select>
+                        <button type="submit" class="search-btn">検索</button>
+                    </form>
+                </div>
+                
+                <!-- ユーザー情報・各種ボタン -->
+                <div class="header-right">
+                    <a th:href="@{/mypage}" class="btn-mypage">マイページ</a>
+                    
+                    <!-- ユーザー名とログアウトを上下に配置するエリア -->
+                    <div class="user-menu">
+                        <span class="user-info">
+                            ユーザー名：<span th:text="${session.loginUser != null ? session.loginUser.userName : 'ゲスト'}">ユーザー名</span>
+                        </span>
+                        <form th:action="@{/logout}" method="post" class="logout-form">
+                            <button type="submit" class="btn-logout">ログアウト</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

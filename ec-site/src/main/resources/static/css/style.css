@@ -1,0 +1,281 @@
+@charset "UTF-8";/* 全体レイアウトの調整 */
+body {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main.main-container {
+    flex: 1;
+    padding: 20px;
+}
+
+/* ヘッダーのスタイル */
+.ec-header {
+    background-color: #222;
+    color: #fff;
+    padding: 15px 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 検索フォーム */
+.search-form {
+    display: flex;
+    gap: 5px;
+}
+
+.search-input {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 3px;
+    width: 200px;
+}
+
+.category-select {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.search-btn {
+    padding: 6px 15px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #555;
+}
+
+/* 右側メニュー */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.btn-mypage {
+    background-color: #007bff;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #ccc;
+    border: 1px solid #777;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+/* フッターのスタイル */
+.ec-footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: auto;
+}
+/* ユーザー名とログアウトボタンを上下に並べるコンテナ */
+.user-menu {
+    display: flex;
+    flex-direction: column; /* 上下（縦方向）に並べる */
+    gap: 4px;              /* ユーザー名とログアウトボタンの間隔 */
+}
+
+.user-info {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #ccc;
+    border: 1px solid #777;
+    padding: 2px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-logout:hover {
+    color: #fff;
+    border-color: #fff;
+}
+/* --- TOP画面 セール品・商品一覧レイアウト --- */
+.sale-banner {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* 5つの商品を綺麗に配置するグリッド（上段4つ、下段中央1つを想定） */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* 下段中央の5つ目の商品を中央に寄せるための調整 */
+.product-card:nth-child(5) {
+    grid-column: 2 / 3; /* 必要に応じて調整 */
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* リンク（ボタン化しない、枠線なしの画像） */
+.product-img-link {
+    display: block;
+    text-decoration: none;
+    border: none;
+}
+
+.product-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background-color: #e9ecef; /* 画像がない場合のプレースホルダー色 (450x300風) */
+    border-radius: 3px;
+}
+
+.product-info-summary {
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+/* --- 商品詳細画面レイアウト --- */
+.detail-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.detail-left {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.detail-img-box {
+    width: 450px;
+    height: 300px;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.large-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.detail-text-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.detail-right-box {
+    width: 300px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-cart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.purchase-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.review-section {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.review-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-single-buy, .btn-review-post {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
