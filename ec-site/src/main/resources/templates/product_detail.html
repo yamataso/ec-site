@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品詳細画面</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- ヘッダー読込 -->
+    <div th:replace="fragments/header :: header"></div>
+
+    <main class="main-container">
+        <h2>商品詳細画面</h2>
+        
+        <!-- 商品データが存在する場合 -->
+        <div class="detail-container" th:if="${product != null}">
+            <!-- 左側：商品画像と基本情報 -->
+            <div class="detail-left">
+                <div class="detail-img-box">
+    				<!-- ThymeleafのURL式 @{} を使って正しくパスを解決します -->
+    				<img th:src="@{${product.imgPath}}" th:alt="${product.productName}" class="large-product-img">
+				</div>		
+                <div class="detail-text-info">
+                    <p>商品名：<span th:text="${product.productName}">商品名</span></p>
+                    <!-- メーカー名や価格などの表示 -->
+                    <p>価格：<span th:text="${product.price}">0</span>円</p>
+                    <p>税込価格：<span th:text="${product.taxPrice}">0</span>円</p>
+                    <p>在庫数：<span th:text="${product.stock}">0</span></p>
+                    <p>商品説明：<span th:text="${product.comment}">商品説明</span></p>
+                </div>
+            </div>
+
+            <!-- 右側：カート・購入ボックス -->
+            <div class="detail-right-box">
+                <button type="button" class="btn-cart">カートに入れる</button>
+                <div class="purchase-details">
+                    <p>数量：
+                        <select name="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </p>
+                    <p>価格：<span th:text="${product.price}">0</span>円</p>
+                    <p>税込価格：<span th:text="${product.taxPrice}">0</span>円</p>
+                    <p>在庫表示：<span th:text="${product.stock > 0 ? '在庫あり' : '在庫切れ'}">在庫表示</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- データが見つからない場合 -->
+        <div th:if="${product == null}">
+            <p>指定された商品は存在しません。</p>
+            <a th:href="@{/top}">TOP画面へ戻る</a>
+        </div>
+
+        <!-- 口コミセクション（現時点はレイアウトのみ） -->
+        <div class="review-section">
+            <h3>&lt;口コミ&gt;</h3>
+            <div class="review-card">
+                <p>ユーザー名：</p>
+                <p>投稿日時：</p>
+                <p>コメント：</p>
+                <p>評価（5段階）：</p>
+            </div>
+            <div class="review-buttons">
+                <button type="button" class="btn-single-buy">単品購入</button>
+                <button type="button" class="btn-review-post">口コミ投稿</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター読込 -->
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

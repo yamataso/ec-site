@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TOP画面</title>
+<!-- CSSも忘れずに読み込んでください -->
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- ヘッダー読込 -->
+    <div th:replace="fragments/header :: header"></div>
+
+    <main class="main-container">
+        <h1>TOP画面</h1>
+        
+        <!-- セール品バナー -->
+        <div class="sale-banner">セール品</div>
+        
+        <!-- 商品一覧グリッド -->
+        <div class="product-grid" th:if="${productList != null and !productList.isEmpty()}">
+            <div class="product-card" th:each="product : ${productList}">
+                <!-- 画像がボタン（リンク）になるように設定 -->
+                <a th:href="@{/product/{id}(id=${product.productId})}">
+                    <!-- 
+                      ★ここが重要：th:src で画像パスを指定します。
+                      @{/images/sample1.jpg} のように /images/ から始まるパスを書きます。
+                      データベース上の img_path カラムに保存されているパス（例：/images/sample1.jpg）を
+                      そのまま出力する書き方も可能です。
+                    -->
+                    <img th:src="@{${product.imgPath}}" 
+                         th:alt="${product.productName}" 
+                         class="product-img">
+                </a>
+                <div class="product-info-summary">
+                    <span th:text="${product.productName}">商品名</span><br>
+                    <span th:text="${product.price}">価格</span>円
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター読込 -->
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
