@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h1>ログイン</h1>
+	<!-- Spring Security等の認証先にあわせ、actionを /login に設定（必要に応じて変更してください） -->
+	<form th:action="@{/login}" method="post">
+		<div>
+			<label>メールアドレス</label>
+			<input type="text" name="username">
+		</div>
+		<div>
+			<label>パスワード</label>
+			<input type="password" name="password">
+		</div>
+		<div>
+			<button type="submit">Login</button>
+		</div>
+		<div>
+			<a th:href="@{/user_register}">新規登録</a>
+		</div>
+	</form>
+	<!-- エラーメッセージの表示 -->
+<div th:if="${error}" style="color: red; margin-bottom: 15px;" th:text="${error}"></div>
+ <!-- フッターの読込（常時表示） -->
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

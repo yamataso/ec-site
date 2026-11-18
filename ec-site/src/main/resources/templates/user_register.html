@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー新規登録画面</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<h2>ユーザー新規登録画面</h2>
+	
+	<!-- コントローラーから渡されたエラーメッセージを表示する領域 -->
+	<div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+	<!-- th:objectとth:fieldを追加してデータを確実にバインド -->
+	<form method="post" th:action="@{/user_register}" th:object="${userRegisterForm}">
+		<div class="form-group">
+			<div>ユーザ名</div>
+			<input type="text" th:field="*{userName}">
+		</div>
+		
+		<div class="form-group">
+			<div>メールアドレス</div>
+			<input type="text" th:field="*{email}">
+		</div>
+		
+		<div class="form-group">
+			<div>パスワード</div>
+			<input type="password" th:field="*{password}">
+		</div>
+		
+		<div class="form-group">
+			<div>パスワード（確認用）</div>
+			<input type="password" th:field="*{confirmPassword}">
+		</div>
+		
+		<div class="button-group">
+			<button type="submit" class="btn-register">登録</button>
+			<a th:href="@{/login}" class="btn-back">戻る</a>
+		</div>
+	</form>
+	 <!-- フッターの読込（常時表示） -->
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
